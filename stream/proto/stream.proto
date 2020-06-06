@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+
+service StreamService {
+    // Client side stream
+    rpc SortInteger(stream SortIntegerReq) returns (SortIntegerResp) {}
+    // Bi directional stream
+    rpc SortIntegerInteractive(stream SortIntegerReq) returns (stream SortIntegerResp) {}
+    // Server side stream
+    rpc PrintFibonacci(FibonacciReq) returns (stream FibonacciResp) {}
+}
+
+message SortIntegerReq {
+    int32 number = 1;
+}
+
+message SortIntegerResp {
+    repeated int32 sorted_numbers = 1;
+}
+
+message FibonacciReq {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+
+message FibonacciResp {
+    int32 num = 1;
+}
