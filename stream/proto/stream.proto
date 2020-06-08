@@ -3,12 +3,23 @@ syntax = "proto3";
 package proto;
 
 service StreamService {
+    // Unary method
+    rpc GetRandomNumber(NumberRange) returns (RandomNumber) {}
     // Client side stream
     rpc SortInteger(stream SortIntegerReq) returns (SortIntegerResp) {}
     // Bi directional stream
     rpc SortIntegerInteractive(stream SortIntegerReq) returns (stream SortIntegerResp) {}
     // Server side stream
     rpc PrintFibonacci(FibonacciReq) returns (stream FibonacciResp) {}
+}
+
+message NumberRange {
+    int32 min = 1;
+    int32 max = 2;
+}
+
+message RandomNumber {
+    int32 num = 1;
 }
 
 message SortIntegerReq {

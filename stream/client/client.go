@@ -97,6 +97,10 @@ func main() {
 	}
 	client := proto.NewStreamServiceClient(conn)
 
+	// get random number
+	res, _ := client.GetRandomNumber(context.Background(), &proto.NumberRange{Min: 12, Max: 20})
+	fmt.Println(res)
+
 	// print fibonacci
 	printFibonacci(client)
 
